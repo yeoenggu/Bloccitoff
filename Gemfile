@@ -36,6 +36,8 @@ gem 'bootstrap-sass', '~> 3.3.3'
 gem 'font-awesome-sass', '~> 4.3.0'
 gem "autoprefixer-rails"
 
+gem 'puma'
+
 group :development do
   gem 'spring'
   gem 'spring-commands-rspec'
