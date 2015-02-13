@@ -78,8 +78,10 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
-production:
-  <<: *default
-  database: bloccitoff_production
-  username: bloccitoff
-  password: <%= ENV['BLOCCITOFF_DATABASE_PASSWORD'] %>
+
+# we are not creating production db
+# production:
+#   <<: *default
+#   database: bloccitoff_production
+#   username: bloccitoff
+#   password: <%= ENV['BLOCCITOFF_DATABASE_PASSWORD'] %>
