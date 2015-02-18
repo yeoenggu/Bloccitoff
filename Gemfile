@@ -37,6 +37,7 @@ gem 'font-awesome-sass', '~> 4.3.0'
 gem "autoprefixer-rails"
 
 gem 'puma'
+gem 'devise'
 
 group :development do
   gem 'spring'
