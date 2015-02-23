@@ -38,11 +38,14 @@ gem "autoprefixer-rails"
 
 gem 'puma'
 gem 'devise'
+gem 'figaro'
 
-group :development do
-  gem 'spring'
-  gem 'spring-commands-rspec'
-end
+
+# Disable spring.  It cause too many problems with console and generators.
+# group :development do
+#   gem 'spring'
+#   gem 'spring-commands-rspec'
+# end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

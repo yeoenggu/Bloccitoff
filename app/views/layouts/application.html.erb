@@ -10,9 +10,11 @@
 
       <%= render 'shared/navigation' %>
       <div class="container" id="main-container">
+        <%= render 'shared/messages' %>
+        <!-- Note .col-xx-x has a float left.  -->
         <%= yield %>
-      </div>
-
+        
+      </div><!-- end main-container -->
 
 </body>
 </html>
