@@ -40,7 +40,6 @@ gem 'puma'
 gem 'devise'
 gem 'figaro'
 
-
 # Disable spring.  It cause too many problems with console and generators.
 # group :development do
 #   gem 'spring'
@@ -61,13 +60,19 @@ group :development, :test do
   gem 'pry-rails'
   gem 'pry-byebug'
 
-  gem 'rspec-rails', '~> 3.0'
-  gem 'factory_girl_rails'
+  gem 'faker'
 end
 
 group :test do
+  # testing
+  gem 'email_spec'
+  gem 'rspec-rails'
+  gem 'factory_girl_rails', "~> 4.0"
+
   gem 'database_cleaner'
   gem 'capybara'
+  #gem 'selenium-webdriver', '>=2.45.dev3'
+  gem 'capybara-webkit'
   gem 'shoulda-matchers', require: false
 end
 
