@@ -3,10 +3,6 @@ require 'rails_helper'
 feature "Sign Up" do 
   let(:user) { build(:user) }
 
-  before do
-    # page.driver.allow_url("fonts.googleapis.com")
-  end
-
   scenario 'Valid user', js: true do
     page.driver.allow_url("fonts.googleapis.com")
     # not 100% sure whether we need to do this?
