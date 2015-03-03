@@ -36,6 +36,11 @@
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span>My Account<strong class="caret"></strong></a>
                   <ul class="dropdown-menu">
                     <li>
+                      <%= link_to current_user do %>
+                        <span class="glyphicon glyphicon-user"></span> Profile
+                      <% end %>
+                    </li>
+                    <li>
                       <%= link_to edit_user_registration_path do %>
                         <span class="glyphicon glyphicon-user"></span> Edit
                       <% end %>
