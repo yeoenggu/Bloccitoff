@@ -6,6 +6,10 @@ Rails.application.routes.draw do
 
   resources :users, only: :show
 
+  resources :users do
+    resources :item, only: :create
+  end
+
   root to: 'welcome#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
