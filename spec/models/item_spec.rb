@@ -1,38 +1,57 @@
 require 'rails_helper'
 
 RSpec.describe Item, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
 
-  xit "add an TO-DO as a owner" do
-    
+  it "can be created" do
+    user = build(:user)
+    user.save
+
+    expect(user.valid?).to eq true
+
+    item = Item.create(name: "Finish BLOC", user_id: user.id)
+
+    expect(item.name).to eq("Finish BLOC")
+    expect(item.user_id).to eq(user.id)
   end
 
-  xit "cannot add an TO-DO as a non-owner" do
-    
+  it "can be read " do
+    user = build(:user)
+    user.save
+
+    item = Item.create(name: "Finish BLOC", user_id: user.id)
+
+    item1 = Item.find_by(name: "Finish BLOC")
+
+    expect(item1.changed?).to be(false)
+    expect(item1.name).to eq("Finish BLOC")
+    expect(item1.user_id).to eq(user.id)
   end
 
-  xit "remove an TO-DO as a owner" do
-    
+  it "can be updated" do
+    user = build(:user)
+    user.save
+
+    item = Item.create(name: "Finish BLOC", user_id: user.id)
+
+    item1 = Item.find_by(name: "Finish BLOC")
+
+    item1.name = "By May"
+    expect(item1.changed?).to be(true)
+    expect(item1.name).to eq("By May")
+    expect(item1.user_id).to eq(user.id)
   end
 
-  xit "cannot remove an TO-DO as a non-owner" do
-    
-  end
+  it "delete it" do
+    user = build(:user)
+    user.save
 
-  xit "update an TO-DO as a owner" do
-    
-  end
+    item = Item.create(name: "Finish BLOC", user_id: user.id)
 
-  xit "cannot update an TO-DO as a non-owner" do
-    
-  end
+    item1 = Item.find_by(name: "Finish BLOC")
+    item1.destroy
 
-  xit "list all TO-DO as a owner" do
-    
-  end
+    expect(item1.destroyed?).to be(true)
 
-  xit "cannot list an TO-DO as a non-owner" do
-    
   end
 
 end

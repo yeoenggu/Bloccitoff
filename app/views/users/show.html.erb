@@ -1,51 +1,40 @@
-<div class="container user-profile">
-  <div row="row">
-    <div class="col-md-offset-2 col-md-8 col-lg-offset-3 col-lg-6">
-      <div class="well profile">
-        <div class="col-sm-12">
-          <div class="col-xs-12 col-sm-8">
-            <h2><%= current_user.name %></h2>
-            <p><strong>Email:</strong> <%= current_user.email %></p>
-          </div><!-- end of col-xs-12 -->
-          <div class="col-xs-12 col-sm-4 text center">
-            <figure>
-              <img src="http://www.localcrimenews.com/wp-content/uploads/2013/07/default-user-icon-profile.png" alt="" class="img-circle img-responsive">
-              <figcaption class="ratings">
-                <p>Ratings
-                  <a href="#">
-                    <span class="fa fa-star"></span>
-                  </a>
-                  <a href="#">
-                    <span class="fa fa-star"></span>
-                  </a>
-                  <a href="#">
-                    <span class="fa fa-star"></span>
-                  </a>
-                  <a href="#">
-                    <span class="fa fa-star"></span>
-                  </a>
-                  <a href="#">
-                   <span class="fa fa-star-o"></span>
-                 </a> 
-               </p>
-             </figcaption>
-            </figure>
-          </div><!-- end of col-xs-12 -->
-        </div><!-- end of col-sm-12 -->
-        <div class="col-xs-12 divider text-center">
-          <div class="col-xs-12 col-sm-4 emphasis">
-            <h2><strong> 8</strong></h2>                    
-            <p><small>Tasks</small></p>
-            <button class="btn btn-success btn-block"><span class="fa fa-plus-circle"></span> Let do it </button>
-          </div><!-- end of task list -->
-          <div class="col-xs-12 col-sm-4 emphasis">
-            <h2><strong>3</strong></h2>                    
-            <p><small>Tasks expiring soon</small></p>
-            <button class="btn btn-info btn-block"><span class="fa fa-user"></span> Finish it </button>
-          </div><!-- end of expiring tasks -->
-        </div><!-- end of col-xs-12 divider -->
-      </div><!-- end of well -->
-    </div><!-- end of col-md-offset-2 -->
-  </div><!-- end of row -->
-</div><!-- end of container user-profile -->
+<div class="container main-page">
+  <div class="row">
+     <div class="col-md-offset-2 col-md-8 col-lg-offset-3 col-lg-6">
 
+      <div class="well">
+        <p class="lead"> Welcome <%= @user.name %>  Just do it. </p>
+      </div>
+      <br>
+
+      <%= link_to 'New Item', new_user_item_path(@user.id) %>
+
+      <br>
+
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th>Task Name</th>
+            <th>Owner</th>
+            <th>Date</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @items.each do |item| %>
+            <tr>
+              <td><%= item.name %></td>
+              <td><%= item.user.name %></td>
+              <td><%= item.created_at %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <br>
+
+
+     </div><!-- end col-md-offset -->
+  </div><!-- end of row -->
+</div><!-- end of container -->
