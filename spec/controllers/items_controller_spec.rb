@@ -26,8 +26,8 @@ RSpec.describe ItemsController, type: :controller do
 
       it "creates a new Item" do
 
-        user = build(:user)
-        user.save
+        user = create(:user)
+
         valid_task_name = "To do it"
         invalid_task_name = "Do it later"
 
@@ -41,8 +41,8 @@ RSpec.describe ItemsController, type: :controller do
       end
 
       it "assigns a newly created item as @item" do
-        user = build(:user)
-        user.save
+        user = create(:user)
+
         valid_task_name = "To do it"
         invalid_task_name = "Do it later"
 
@@ -56,8 +56,8 @@ RSpec.describe ItemsController, type: :controller do
       end
 
       it "redirects to the created item" do
-        user = build(:user)
-        user.save
+        user = create(:user)
+
         valid_task_name = "To do it"
         invalid_task_name = "Do it later"
 

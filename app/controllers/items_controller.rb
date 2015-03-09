@@ -25,19 +25,11 @@ class ItemsController < ApplicationController
   # POST /items
   # POST /items.json
   def create
-    # @user = current_user
-    # item_params
-    # @item = Item.new(name: params[:name], user_id: @user.id)
-    p "*"*8
-    p item_params
-
     @item = Item.new(item_params.merge(user_id: current_user.id))
 
     respond_to do |format|
       if @item.save
-        p "*"*8
-        p @item.inspect
-        format.html { redirect_to current_user, notice: 'Item was successfully created.' }
+        format.html { redirect_to current_user, notice: 'Task was successfully created.' }
         format.json { render :show, status: :created, location: @item }
       else
         format.html { render :new }
@@ -78,8 +70,6 @@ class ItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
-      # parameters = params.require(:item).permit(:name).merge(params.require(:item).permit(:description))
-      # parameters.merge(user_id: current_user.id)
       params.require(:item).permit(:name, :description)
     end
 end

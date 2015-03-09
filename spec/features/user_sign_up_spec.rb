@@ -136,9 +136,6 @@ feature "Sign Up" do
       password_confirm: user.password
       })
 
-    # p "*"*9
-    # p options.inspect
-
     fill_in('Name', with: options[:name])
     fill_in('Email', with: options[:email])
     fill_in('Password', with: options[:password] )
