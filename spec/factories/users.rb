@@ -10,7 +10,7 @@ FactoryGirl.define do
     name        { Faker::Name.name }
     email       { Faker::Internet.email }
     password    "helloworld"
-   
+    id          { Faker::Number.number(2) }
 
     before(:create) do | user, evaluator |
       user.skip_confirmation! if evaluator.skip_confirmation

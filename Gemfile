@@ -33,7 +33,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'capistrano-rails', group: :development
 
 gem 'bootstrap-sass', '~> 3.3.3'
-gem 'font-awesome-sass', '~> 4.3.0'
 gem "autoprefixer-rails"
 
 gem 'puma'
