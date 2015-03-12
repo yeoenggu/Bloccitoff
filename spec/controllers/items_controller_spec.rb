@@ -19,87 +19,45 @@ require 'rails_helper'
 # that an instance is receiving a specific message.
 
 RSpec.describe ItemsController, type: :controller do
+  before(:all) do
+      login_user
+      @user = subject.current_user
+      valid_task_name = "To do it"
+      invalid_task_name = "Do it later"
+      @valid_attributes = { name: valid_task_name, user_id: user.id }
+      @invalid_attributes = { name: invalid_task_name }
+  end
 
-  describe "POST #create" do
-
+  describe "POST #create" 
     context "with valid params" do
-
       it "creates a new Item" do
-
-        user = create(:user)
-
-        valid_task_name = "To do it"
-        invalid_task_name = "Do it later"
-
-        valid_attributes = { name: valid_task_name, user_id: user.id }
-        invalid_attributes = { name: invalid_task_name }
-        valid_session ={ name: valid_task_name, user_id: user.id }
-
         expect {
-          post :create, {item: valid_attributes}, valid_session
+          post :create , :user_id => @user.id, item: @valid_attributes
         }.to change(Item, :count).by(1)
       end
 
       it "assigns a newly created item as @item" do
-        user = create(:user)
-
-        valid_task_name = "To do it"
-        invalid_task_name = "Do it later"
-
-        valid_attributes = { name: valid_task_name, user_id: user.id }
-        invalid_attributes = { name: invalid_task_name }
-        valid_session ={ name: valid_task_name, user_id: user.id }
-
-        post :create, {:item => valid_attributes}, valid_session
+        post :create , :user_id => @user.id, item: @valid_attributes
         expect(assigns(:item)).to be_a(Item)
         expect(assigns(:item)).to be_persisted
       end
 
       it "redirects to the created item" do
-        user = create(:user)
-
-        valid_task_name = "To do it"
-        invalid_task_name = "Do it later"
-
-        valid_attributes = { name: valid_task_name, user_id: user.id }
-        invalid_attributes = { name: invalid_task_name }
-        valid_session ={ name: valid_task_name, user_id: user.id }
-
-        post :create, {:item => valid_attributes}, valid_session
+        post :create , :user_id => user.id, item: @valid_attributes
         expect(response).to redirect_to(Item.last)
       end
-    end
+    end # end of context
 
     context "with invalid params" do
       it "assigns a newly created but unsaved item as @item" do
-        
-        user = build(:user)
-        user.save
-        valid_task_name = "To do it"
-        invalid_task_name = "Do it later"
-
-        valid_attributes = { name: valid_task_name, user_id: user.id }
-        invalid_attributes = { name: invalid_task_name }
-        valid_session ={ name: valid_task_name, user_id: user.id }
-
-        post :create, {:item => invalid_attributes}, valid_session
+        post :create , :user_id => user.id, item: @invalid_attributes
         expect(assigns(:item)).to be_a_new(Item)
       end
 
       it "re-renders the 'new' template" do
-        user = build(:user)
-        user.save
-        valid_task_name = "To do it"
-        invalid_task_name = "Do it later"
-
-        valid_attributes = { name: valid_task_name, user_id: user.id }
-        invalid_attributes = { name: invalid_task_name }
-        valid_session ={ name: valid_task_name, user_id: user.id }
-
-        post :create, {:item => invalid_attributes}, valid_session
+        post :create , :user_id => user.id, item: @invalid_attributes
         expect(response).to render_template("new")
-      end
-    end
-  end
-
-end
+      end 
+     end # end of context
+  end # end of describe "Post #create"
+end # end of describe
