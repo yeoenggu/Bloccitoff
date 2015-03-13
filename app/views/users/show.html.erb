@@ -21,12 +21,13 @@
         </div>
       </div>
       <div class="table-responsive">
-        <table class="table table-bordered table-striped table-hover">
+        <table id="Task-table" class="table table-bordered table-striped table-hover">
           <thead>
             <tr>
               <th>Task Name</th>
               <th>Description</th>
               <th>Date</th>
+              <th>  </th>
             </tr>
           </thead>
 
@@ -36,6 +37,7 @@
                 <td><%= item.name %></td>
                 <td><%= item.description %></td>
                 <td><%= item.created_at %></td>
+                <td><%= link_to("", item , method: :delete, class: 'glyphicon glyphicon-ok', id: "#{item.id}-complete") %></td>
               </tr>
             <% end %>
           </tbody>
