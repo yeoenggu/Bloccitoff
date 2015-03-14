@@ -55,10 +55,16 @@ class ItemsController < ApplicationController
   # DELETE /items/1
   # DELETE /items/1.json
   def destroy
-    @item.destroy
+    if @item.destroy
+      flash[:notice] = "Task #{@item.name} was completed"
+    else
+      flash[:error] = "Error in completing task #{@item.name}.  Please try again"
+    end 
+    
     respond_to do |format|
       format.html { redirect_to current_user, notice: "Task #{@item.name} was successfully destroyed." }
       format.json { head :no_content }
+      format.js
     end
   end
 
