@@ -56,7 +56,9 @@ class ItemsController < ApplicationController
   # DELETE /items/1.json
   def destroy
     if @item.destroy
-      flash[:notice] = "Task #{@item.name} was completed"
+      flash[:notice] = "Task #{@item.name} was completed."
+      puts "*" * 8
+      puts flash[:notice] 
     else
       flash[:error] = "Error in completing task #{@item.name}.  Please try again"
     end 
