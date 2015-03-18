@@ -3,7 +3,7 @@ class UsersController < ApplicationController
     # have to set items 
     # display list of tasks ...
     @user = User.find_by(user_params)
-    @items = @user.items
+    @items = @user.items.sorted
   end
 
   private
