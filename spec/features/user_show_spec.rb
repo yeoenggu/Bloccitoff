@@ -13,7 +13,6 @@ feature 'User show ' do
     expect(page).to have_content("Signed in successfully")
     expect(current_path).to eq(user_path(user))
 
-    expect(page).to have_content(user.email)
     expect(page).to have_content(user.name)
 
   end

@@ -26,22 +26,12 @@ feature 'User' do
 
     # verify
     expect(current_path).to eq(user_path(user))
-    expect(page).to have_text("Task was successfully created.")
+    expect(page).to have_text("Task #{task_name} was successfully created.")
     expect(page).to have_text(task_name)
     expect(page).to have_text(task_description) 
     
     #tear down
     click_link "My Account"
     click_link "Log out"
-  end
-
-  private
-
-  def sign_in_user(user, password)
-
-    fill_in('Email', with: user.email)
-    fill_in('Password', with: password )
-    
-    click_button('Log in')
   end
 end

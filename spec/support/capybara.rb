@@ -19,6 +19,7 @@ require 'capybara/rspec'
 require 'capybara/webkit/matchers'
 # Configure webkit driver
 Capybara.javascript_driver = :webkit
+Capybara.default_wait_time = 5
 
 # Configures Chrome to be used as the browser for `js: true` feature specs.
 # Capybara.register_driver :selenium do |app|

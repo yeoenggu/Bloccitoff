@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  # before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_item, only: [:destroy]
 
   # GET /items
   # GET /items.json
@@ -29,7 +29,7 @@ class ItemsController < ApplicationController
 
     respond_to do |format|
       if @item.save
-        format.html { redirect_to current_user, notice: 'Task was successfully created.' }
+        format.html { redirect_to current_user, notice: "Task #{@item.name} was successfully created."}
         format.json { render :show, status: :created, location: @item }
       else
         format.html { render :new }
@@ -54,13 +54,21 @@ class ItemsController < ApplicationController
 
   # DELETE /items/1
   # DELETE /items/1.json
-  # def destroy
-  #   @item.destroy
-  #   respond_to do |format|
-  #     format.html { redirect_to items_url, notice: 'Item was successfully destroyed.' }
-  #     format.json { head :no_content }
-  #   end
-  # end
+  def destroy
+    if @item.destroy
+      flash[:notice] = "Task #{@item.name} was completed."
+      puts "*" * 8
+      puts flash[:notice] 
+    else
+      flash[:error] = "Error in completing task #{@item.name}.  Please try again"
+    end 
+    
+    respond_to do |format|
+      format.html { redirect_to current_user, notice: "Task #{@item.name} was successfully destroyed." }
+      format.json { head :no_content }
+      format.js
+    end
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
