@@ -16,12 +16,12 @@ if Rails.env != 'production'
   password = "helloworld"
   user = User.new(
     name: "user1",
-    email: "user1@example.com",
+    email: Faker::Internet.email,
     password: password,
     password_confirmation: password,
   )
   user.skip_confirmation!
-  user.save
+  user.save!
 
   50.times do 
     Item.create!(

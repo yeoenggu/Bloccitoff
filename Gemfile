@@ -38,6 +38,7 @@ gem "autoprefixer-rails"
 gem 'puma'
 gem 'devise'
 gem 'figaro'
+gem 'whenever', :require => false
 
 # Disable spring.  It cause too many problems with console and generators.
 # group :development do

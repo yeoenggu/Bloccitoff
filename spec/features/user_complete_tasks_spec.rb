@@ -23,10 +23,10 @@ RSpec.feature "User", type: :feature, js: true do
       click_link("#{task.id}-complete")
     end
     wait_for_ajax
-    # reload_page
+    reload_page
 
     # verify
-    # save_and_open_page
+    save_and_open_page
     # expect(page).to have_text("Task #{task_name} was completed.")
     expect(page).to have_css("#task-#{task.id}", visible: false)
 
