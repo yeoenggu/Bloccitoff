@@ -12,14 +12,20 @@
         <div class="panel-heading">
           <h3 class="panel-title">My Tasks</h3>
           
+          <!-- Button HTML (to Trigger Modal) -->
           <div class="pull-right">
-            <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> Filter</button>
+            <a href="#newTaskModal" class="btn btn-default btn-xs btn-filter" data-toggle="modal"><span class="glyphicon glyphicon-filter"></span> New Task2</a>
+          </div>
+          <div class="pull-right">
+            <%= link_to 'New task 3', '#newTaskModal', 'data-toggle'=> 'modal', class:'btn btn-default btn-xs' %>
           </div>
           <div class="pull-right">
             <%= link_to 'New task', new_user_item_path(@user.id), class:'btn btn-default btn-xs' %>
           </div>
-        </div>
-      </div>
+
+
+        </div><!-- end of panel-heading -->
+      </div><!-- end of panel-primary -->
       <div class="table-responsive">
         <table id="Task-table" class="table table-bordered table-striped table-hover">
           <thead>
@@ -33,12 +39,7 @@
 
           <tbody>
             <% @items.each do |item| %>
-              <tr id=<%= "task-#{item.id}" %>>
-                <td><%= item.name %></td>
-                <td><%= item.description %></td>
-                <td><%= item.days_left %></td>
-                <td><%= link_to("", item , method: :delete, remote: true, class: 'glyphicon glyphicon-ok', id: "#{item.id}-complete") %></td>
-              </tr>
+              <%= render partial: 'items/task_table_row', locals: { item: item } %>
             <% end %>
           </tbody>
         </table>
@@ -50,3 +51,34 @@
      </div><!-- end col-md-offset -->
   </div><!-- end of row -->
 </div><!-- end of container -->
+
+<!-- Modal HTML -->
+<div id="newTaskModal" class="modal fade">
+ <div class="modal-dialog">
+   <div class="modal-content">
+     <div class="modal-header">
+       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times</button>
+       <h4 class="modal-title">Confirmation</h4>
+     </div><!-- end of modal-header -->
+     <div class="modal-body">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-4 col-md-offset-4">
+            <%# Render the new item form (passing modal => true to enable remote => true) %>
+            <%= render 'items/form', modal: true %>
+          </div>
+        </div>
+      </div>
+       
+     </div><!-- end of modal-body -->
+
+     <div class="modal-footer">
+      
+       <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
+    
+     </div> 
+     <!-- end of modal-footer -->
+
+   </div><!-- end of modal-content -->
+ </div><!-- end modal-dialog -->
+</div><!-- end of #newTaskModal -->

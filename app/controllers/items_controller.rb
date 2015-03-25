@@ -25,15 +25,20 @@ class ItemsController < ApplicationController
   # POST /items
   # POST /items.json
   def create
-    @item = Item.new(item_params.merge(user_id: current_user.id))
+    @user = current_user
+    @item = Item.new(item_params.merge(user_id: @user.id))
 
     respond_to do |format|
       if @item.save
-        format.html { redirect_to current_user, notice: "Task #{@item.name} was successfully created."}
+        format.html { redirect_to @user, notice: "Task #{@item.name} was successfully created."}
         format.json { render :show, status: :created, location: @item }
+        # added:
+        format.js   { render :show, status: :created, location: @item}
       else
-        format.html { render :new }
+        # format.html { render :new }
+        format.html { redirect_to @userrails}
         format.json { render json: @item.errors, status: :unprocessable_entity }
+        format.js { render json: @item.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -57,8 +62,6 @@ class ItemsController < ApplicationController
   def destroy
     if @item.destroy
       flash[:notice] = "Task #{@item.name} was completed."
-      puts "*" * 8
-      puts flash[:notice] 
     else
       flash[:error] = "Error in completing task #{@item.name}.  Please try again"
     end 

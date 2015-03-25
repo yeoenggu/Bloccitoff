@@ -1,0 +1,6 @@
+<tr id=<%= "task-#{item.id}" %>>
+  <td><%= item.name %></td>
+  <td><%= item.description %></td>
+  <td><%= item.days_left %></td>
+  <td><%= link_to("", item , method: :delete, remote: true, class: 'glyphicon glyphicon-ok', id: "#{item.id}-complete") %></td>
+</tr>

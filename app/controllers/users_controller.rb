@@ -4,6 +4,7 @@ class UsersController < ApplicationController
     # display list of tasks ...
     @user = User.find_by(user_params)
     @items = @user.items.sorted
+    @item = Item.new
   end
 
   private

@@ -5,6 +5,7 @@ class Item < ActiveRecord::Base
   # validates_associated :user
   # EG: why this won't work?  
   validates :user_id, presence: true
+  validates :name, presence: true
 
   scope :sorted, -> { order(created_at: :desc) }
 
