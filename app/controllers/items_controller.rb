@@ -30,10 +30,13 @@ class ItemsController < ApplicationController
 
     respond_to do |format|
       if @item.save
+        flash[:notice] = "Task #{@item.name} was successfully created."
         format.html { redirect_to @user, notice: "Task #{@item.name} was successfully created."}
         format.json { render :show, status: :created, location: @item }
         # added:
-        format.js   { render :show, status: :created, location: @item}
+        # for some reason unknown, notice does not work.
+        # format.js   { render :show, status: :created, notice: "Task #{@item.name} was successfully created.", location: @item }
+        format.js   { render :show, status: :created, location: @item }
       else
         # format.html { render :new }
         format.html { redirect_to @userrails}
@@ -67,7 +70,7 @@ class ItemsController < ApplicationController
     end 
     
     respond_to do |format|
-      format.html { redirect_to current_user, notice: "Task #{@item.name} was successfully destroyed." }
+      format.html { redirect_to current_user }
       format.json { head :no_content }
       format.js
     end

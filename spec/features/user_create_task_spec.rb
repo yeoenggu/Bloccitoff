@@ -16,7 +16,8 @@ feature 'User' do
     # exercise
     click_link "New task"
 
-    expect(current_path).to eq(new_user_item_path(user.id))
+    expect(page).to have_content('Name')
+    expect(page).to have_content('Description')
 
     task_name = Faker::Lorem.word
     task_description = Faker::Lorem.sentence

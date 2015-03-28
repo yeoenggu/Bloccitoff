@@ -13,16 +13,11 @@
           <h3 class="panel-title">My Tasks</h3>
           
           <!-- Button HTML (to Trigger Modal) -->
+          
           <div class="pull-right">
-            <a href="#newTaskModal" class="btn btn-default btn-xs btn-filter" data-toggle="modal"><span class="glyphicon glyphicon-filter"></span> New Task2</a>
+            <%= link_to 'New task', '#newTaskModal', 'data-toggle'=> 'modal', class:'btn btn-default btn-xs' %>
           </div>
-          <div class="pull-right">
-            <%= link_to 'New task 3', '#newTaskModal', 'data-toggle'=> 'modal', class:'btn btn-default btn-xs' %>
-          </div>
-          <div class="pull-right">
-            <%= link_to 'New task', new_user_item_path(@user.id), class:'btn btn-default btn-xs' %>
-          </div>
-
+          
 
         </div><!-- end of panel-heading -->
       </div><!-- end of panel-primary -->
